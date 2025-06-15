@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client"
 
 import React, { useState, useEffect } from "react"
@@ -339,7 +338,6 @@ export default function DoctorLogin() {
         <TextInput
           placeholder="Enter Doctor Email"
           placeholderTextColor="#666"
-=======
 import {
   View,
   Text,
@@ -398,13 +396,12 @@ export default function DoctorLogin() {
         <TextInput
           placeholder="Enter Email"
           placeholderTextColor="#000"
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
           value={email}
           onChangeText={setEmail}
           style={styles.input}
           keyboardType="email-address"
           autoCapitalize="none"
-<<<<<<< HEAD
           onFocus={handleEmailFocus}
           onBlur={handleEmailBlur}
         />
@@ -416,7 +413,6 @@ export default function DoctorLogin() {
         <TextInput
           placeholder="Enter Secure Password"
           placeholderTextColor="#666"
-=======
         />
       </View>
 
@@ -425,12 +421,11 @@ export default function DoctorLogin() {
         <TextInput
           placeholder="Enter Password"
           placeholderTextColor="#000"
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
           secureTextEntry
           value={password}
           onChangeText={setPassword}
           style={styles.input}
-<<<<<<< HEAD
           onFocus={handlePasswordFocus}
           onBlur={handlePasswordBlur}
         />
@@ -479,7 +474,6 @@ export default function DoctorLogin() {
       </View>
     </View>
   )
-=======
         />
       </View>
 
@@ -488,13 +482,12 @@ export default function DoctorLogin() {
       </TouchableOpacity>
     </View>
   );
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-<<<<<<< HEAD
     backgroundColor: "#D1E5D3",
     justifyContent: "center",
     alignItems: "center",
@@ -683,7 +676,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 })
-=======
     backgroundColor: '#D1E5D3',
     justifyContent: 'center',
     alignItems: 'center',
@@ -733,4 +725,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

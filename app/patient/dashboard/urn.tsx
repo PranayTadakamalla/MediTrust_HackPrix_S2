@@ -122,3 +122,4 @@ const styles = StyleSheet.create({
     borderTopColor: '#A5D6A7',
   },
 });
+

@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react';
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 import {
     View,
     Text,
@@ -11,25 +9,21 @@ import {
     KeyboardAvoidingView,
     ScrollView,
     Platform,
-<<<<<<< HEAD
     Animated,
     Dimensions,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-=======
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
 
-<<<<<<< HEAD
 const { width, height } = Dimensions.get('window');
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 
 export default function Step1() {
     const router = useRouter();
@@ -38,7 +32,6 @@ export default function Step1() {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-<<<<<<< HEAD
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
@@ -318,8 +311,7 @@ export default function Step1() {
             useNativeDriver: false,
         }).start();
     };
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 
     const getIdLabel = () => {
         switch (country) {
@@ -334,7 +326,6 @@ export default function Step1() {
         }
     };
 
-<<<<<<< HEAD
     const handleNext = async () => {
         hideError();
         
@@ -470,7 +461,6 @@ export default function Step1() {
         });
     };
 
-=======
     const handleNext = async() => {
         if (
             fullName.trim() !== '' &&
@@ -513,13 +503,12 @@ export default function Step1() {
         }
     };
 
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
-<<<<<<< HEAD
             <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 {/* Animated Logo */}
                 <Animated.Text
@@ -810,7 +799,6 @@ export default function Step1() {
                         }
                     ]}
                 />
-=======
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <Text style={styles.logo}>MediTrust</Text>
                 <Text style={styles.heading}>Step 1: </Text> 
@@ -869,14 +857,13 @@ export default function Step1() {
                 <TouchableOpacity style={styles.button} onPress={handleNext}>
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
             </ScrollView>
         </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
     container: {
         flex: 1,
         backgroundColor: '#F8FDF8',
@@ -895,7 +882,6 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0, 0, 0, 0.1)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
-=======
     logo: {
         fontSize: 32,
         fontWeight: 'bold',
@@ -910,12 +896,11 @@ const styles = StyleSheet.create({
     scrollContainer: {
         padding: 20,
         justifyContent: 'center',
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     },
     heading: {
         fontSize: 20,
         fontWeight: 'bold',
-<<<<<<< HEAD
         marginBottom: 25,
         textAlign: 'left',
         color: 'black',
@@ -970,7 +955,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         flex: 1,
-=======
         marginBottom: 25, 
         textAlign: 'left', 
         color: 'black', 
@@ -990,12 +974,11 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderWidth: 1,
         borderColor: '#A5D6A7',
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-<<<<<<< HEAD
         backgroundColor: '#F1F8E9',
         borderRadius: 25,
         marginTop: 15,
@@ -1009,7 +992,6 @@ const styles = StyleSheet.create({
     icon: {
         marginRight: 10,
         color: 'black',
-=======
         backgroundColor: '#F1F8E9', 
         borderRadius: 25, 
         marginTop: 10,
@@ -1019,14 +1001,13 @@ const styles = StyleSheet.create({
         marginRight: 10,
         color: 'black', 
         marginLeft: 5, 
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     },
     input: {
         flex: 1,
         height: 50,
         fontSize: 16,
         color: '#000',
-<<<<<<< HEAD
         backgroundColor: 'transparent',
         paddingVertical: 0,
         paddingHorizontal: 5,
@@ -1069,7 +1050,6 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#198754',
-=======
         backgroundColor: 'transparent', 
         paddingVertical: 0,
         paddingHorizontal: 5,
@@ -1077,14 +1057,13 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#198754', 
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
         padding: 15,
         borderRadius: 25,
         marginTop: 30,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
-<<<<<<< HEAD
         elevation: 4,
         shadowColor: '#198754',
         shadowOffset: { width: 0, height: 2 },
@@ -1093,8 +1072,7 @@ const styles = StyleSheet.create({
     },
     buttonDisabled: {
         opacity: 0.6,
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     },
     buttonText: {
         color: '#fff',
@@ -1103,7 +1081,6 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         letterSpacing: 1,
     },
-<<<<<<< HEAD
     buttonIcon: {
         marginLeft: 8,
     },
@@ -1128,6 +1105,6 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
 });
-=======
 });
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

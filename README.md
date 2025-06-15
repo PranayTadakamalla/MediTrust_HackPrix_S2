@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
@@ -49,7 +48,6 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-=======
 # 🏥 MEDITRUST (Break-the-Glass Protocol)
 
 A full-stack, decentralized emergency healthcare access system that ensures **life-saving medical data** is accessible in critical moments — while maintaining **patient privacy and control** under normal conditions.
@@ -183,4 +181,4 @@ npx expo start
 > ⚠️ **Disclaimer**: This is a research-level MVP. It showcases technical feasibility and privacy-first emergency access, but a production rollout must pass medical, legal, and security audits.
 
 📬 For queries, contributions, or feedback — feel free to connect!
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+

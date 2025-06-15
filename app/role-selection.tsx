@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Image, StyleSheet, Animated, Dimensions, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -528,7 +527,6 @@ const styles = StyleSheet.create({
         zIndex: 0,
     },
 });
-=======
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons'; // Importing vector icons
@@ -638,4 +636,5 @@ export default function RoleSelection() {
         </View>
     );
 }
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

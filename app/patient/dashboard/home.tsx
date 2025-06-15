@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client"
 
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Alert, Image, BackHandler, Dimensions } from "react-native"
@@ -706,7 +705,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 })
-=======
 import {
     View, Text, TouchableOpacity, StyleSheet, FlatList, Alert, Image, BackHandler
 } from 'react-native';
@@ -894,4 +892,5 @@ const styles = StyleSheet.create({
     },
     navItem: { justifyContent: 'center', alignItems: 'center' },
 });
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

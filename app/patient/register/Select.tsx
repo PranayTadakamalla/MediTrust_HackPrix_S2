@@ -1,19 +1,16 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
-=======
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 
 export default function SelectScreen() {
   const router = useRouter();
 
-<<<<<<< HEAD
   // Animation values for entrance transition
   const heartScale = useRef(new Animated.Value(1)).current;
   const heartOpacity = useRef(new Animated.Value(1)).current;
@@ -285,7 +282,6 @@ export default function SelectScreen() {
         ]}
         pointerEvents="none" // Ensures decorative elements don't block touches
       />
-=======
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>MediTrust</Text> 
@@ -310,7 +306,7 @@ export default function SelectScreen() {
       >
         <Text style={styles.signinText}>Sign-in</Text>
       </TouchableOpacity>
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
     </View>
   );
 }
@@ -323,7 +319,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-<<<<<<< HEAD
   heartOverlay: {
     position: 'absolute',
     top: 0,
@@ -339,8 +334,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
   logo: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -360,13 +354,11 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 30,
   },
-<<<<<<< HEAD
   buttonsContainer: {
     alignItems: 'center',
     width: '100%',
   },
-=======
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
   registerButton: {
     backgroundColor: '#2E8B57',
     borderRadius: 30,
@@ -396,7 +388,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-<<<<<<< HEAD
   decorativeCircle1: {
     position: 'absolute',
     top: height * 0.15,
@@ -418,6 +409,6 @@ const styles = StyleSheet.create({
     zIndex: -1, // Behind everything
   },
 });
-=======
 });
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

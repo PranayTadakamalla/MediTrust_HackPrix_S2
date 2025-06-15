@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, BackHandler, Alert, Animated, Dimensions } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -53,7 +52,6 @@ export default function Step2() {
 
   // Background gradient animation
   const gradientAnimation = useRef(new Animated.Value(0)).current;
-=======
 import { View, Text, TouchableOpacity, StyleSheet, BackHandler, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -62,7 +60,7 @@ import * as SecureStore from 'expo-secure-store';
 
 export default function Step2() {
   const router = useRouter();
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
 
   useEffect(() => {
     const backAction = () => {
@@ -84,7 +82,6 @@ export default function Step2() {
     return () => backHandler.remove();
   }, []);
 
-<<<<<<< HEAD
   useEffect(() => {
     startCelebrationSequence();
     startBackgroundAnimation();
@@ -620,7 +617,6 @@ export default function Step2() {
         ]}
       />
     </Animated.View>
-=======
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>MediTrust</Text>
@@ -639,13 +635,12 @@ export default function Step2() {
         <Text style={styles.goText}>Let's Go</Text>
       </TouchableOpacity>
     </View>
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-<<<<<<< HEAD
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -816,7 +811,6 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
 });
-=======
     flex: 1, backgroundColor: '#D1E5D3', justifyContent: 'center',
     alignItems: 'center', padding: 20,
   },
@@ -841,4 +835,5 @@ const styles = StyleSheet.create({
     color: '#fff', fontSize: 16, fontWeight: 'bold',
   },
 });
->>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
+
+

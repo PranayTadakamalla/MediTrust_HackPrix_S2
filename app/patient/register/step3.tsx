@@ -108,3 +108,4 @@ const styles = StyleSheet.create({
     zIndex: -1, // Ensures it stays behind other elements
   },
 });
+
