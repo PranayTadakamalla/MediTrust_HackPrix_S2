@@ -103,7 +103,9 @@ Our architecture aligns with key principles for emergency data access:
 
 ## ⚙️ Setup and Installation
 
-> (Include your detailed setup steps for the Django backend, Expo app, blockchain setup with Ganache, and IPFS with Pinata here.)
+> python manage.py makemigrations
+> python manage.py migrate
+> python manage.py runserver
 
 ---
 
