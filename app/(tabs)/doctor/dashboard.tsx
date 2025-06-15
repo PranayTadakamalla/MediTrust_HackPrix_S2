@@ -45,7 +45,11 @@ export default function Dashboard() {
   const handleFind = async () => {
     try {
       const response = await fetch(
+<<<<<<< HEAD
         `http://10.0.1.105:8000/api/search-patient/${urn}/`
+=======
+        `http://10.0.1.105:8000/api/${urn}/`
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
       );
       const result = await response.json();
 
@@ -77,11 +81,19 @@ export default function Dashboard() {
         setIsRequested(true);
         Alert.alert('Request Sent', 'Patient data request has been sent.');
       } else {
+<<<<<<< HEAD
         Alert.alert('Request Sent', 'Request Sent Successfully.');
       }
     } catch (error) {
       console.error('Request Sent:',"Request Sent Successfully");
       Alert.alert('Request Sent', 'Request Sent Successfully');
+=======
+        Alert.alert('Error', 'Failed to send request.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      Alert.alert('Error', 'Failed to send request.');
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     }
   };
 

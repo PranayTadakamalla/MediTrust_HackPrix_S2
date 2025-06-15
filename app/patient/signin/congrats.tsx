@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, BackHandler, Alert, Animated, Dimensions } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -52,6 +53,16 @@ export default function Step2() {
 
   // Background gradient animation
   const gradientAnimation = useRef(new Animated.Value(0)).current;
+=======
+import { View, Text, TouchableOpacity, StyleSheet, BackHandler, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { useEffect } from 'react';
+import * as SecureStore from 'expo-secure-store';
+
+export default function Step2() {
+  const router = useRouter();
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
 
   useEffect(() => {
     const backAction = () => {
@@ -73,6 +84,7 @@ export default function Step2() {
     return () => backHandler.remove();
   }, []);
 
+<<<<<<< HEAD
   useEffect(() => {
     startCelebrationSequence();
     startBackgroundAnimation();
@@ -608,11 +620,32 @@ export default function Step2() {
         ]}
       />
     </Animated.View>
+=======
+  return (
+    <View style={styles.container}>
+      <Text style={styles.logo}>MediTrust</Text>
+
+      <TouchableOpacity style={styles.tickButton}>
+        <Ionicons name="checkmark" size={40} color="#2D9B51" />
+      </TouchableOpacity>
+
+      <Text style={styles.title}>Congratulations!</Text>
+      <Text style={styles.subtitle}>You've logged in successfully</Text>
+
+      <TouchableOpacity
+        style={styles.goButton}
+        onPress={() => router.push('/patient/dashboard/home')}
+      >
+        <Text style={styles.goText}>Let's Go</Text>
+      </TouchableOpacity>
+    </View>
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+<<<<<<< HEAD
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -783,3 +816,29 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
 });
+=======
+    flex: 1, backgroundColor: '#D1E5D3', justifyContent: 'center',
+    alignItems: 'center', padding: 20,
+  },
+  logo: {
+    fontSize: 28, fontWeight: 'bold', color: '#198754', marginBottom: 40,
+  },
+  tickButton: {
+    backgroundColor: '#A9D5AC', borderRadius: 30,
+    padding: 10, marginBottom: 20,
+  },
+  title: {
+    fontSize: 24, fontWeight: 'bold', color: '#000', marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16, color: '#000', marginBottom: 40, textAlign: 'center',
+  },
+  goButton: {
+    backgroundColor: '#2D9B51', borderRadius: 25,
+    paddingVertical: 12, paddingHorizontal: 50,
+  },
+  goText: {
+    color: '#fff', fontSize: 16, fontWeight: 'bold',
+  },
+});
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f

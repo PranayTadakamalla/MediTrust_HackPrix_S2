@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, Animated, Dimensions, Keyboard } from 'react-native';
+=======
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
 
+<<<<<<< HEAD
 const { width, height } = Dimensions.get('window');
 
 // Define the type for errors
@@ -14,10 +19,13 @@ interface ErrorState {
   password?: string;
 }
 
+=======
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
 export default function Step1() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+<<<<<<< HEAD
     const [errors, setErrors] = useState<ErrorState>({});
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -422,6 +430,15 @@ export default function Step1() {
             }),
         ]).start();
 
+=======
+
+    const handleNext = async () => {
+        if (!email.trim() || !password.trim()) {
+            Alert.alert('Validation Error', 'Please enter both email and password');
+            return;
+        }
+
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
         try {
             const response = await fetch('http://10.0.1.105:8000/api/login/step1/', {
                 method: 'POST',
@@ -433,6 +450,7 @@ export default function Step1() {
 
             if (!response.ok) {
                 const errorData = await response.json();
+<<<<<<< HEAD
                 showError(errorData.message || 'Login failed. Please check your credentials.');
                 return;
             }
@@ -706,6 +724,67 @@ export default function Step1() {
                     }
                 ]}
             />
+=======
+                Alert.alert('Registration Failed', errorData.message || 'Something went wrong.');
+                return;
+            }
+
+            await SecureStore.setItemAsync('email', email); // Store email for next steps
+            router.push('/patient/signin/step2');
+        } catch (error) {
+            console.error('Registration error:', error);
+            Alert.alert('Network Error', 'Could not connect to the server.');
+        }
+    };
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.logo}>MediTrust</Text>
+            <Text style={styles.title}>
+                Secure Patient Access: Your Health,{"\n"}Your Control
+            </Text>
+
+            {/* Email Input */}
+            <View style={styles.inputWrapper}>
+                <Ionicons name="mail" size={20} color="black" style={styles.icon} />
+                <TextInput
+                    placeholder="Enter Email"
+                    placeholderTextColor="#000"
+                    style={styles.input}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={setEmail}
+                />
+            </View>
+
+            {/* Password Input */}
+            <View style={styles.inputWrapper}>
+                <Ionicons name="lock-closed" size={20} color="black" style={styles.icon} />
+                <TextInput
+                    placeholder="Enter Password"
+                    placeholderTextColor="#000"
+                    secureTextEntry
+                    style={styles.input}
+                    value={password}
+                    onChangeText={setPassword}
+                />
+            </View>
+
+            {/* Navigation Buttons */}
+            <View style={styles.navButtons}>
+                <TouchableOpacity style={styles.circleButton} onPress={() => router.push('/patient/register/Select')}>
+                                <Ionicons name="arrow-back" size={24} color="black" />
+                              </TouchableOpacity>
+                
+                <TouchableOpacity
+                    style={styles.circleButton}
+                    onPress={handleNext}
+                >
+                    <Ionicons name="arrow-forward" size={24} color="black" />
+                </TouchableOpacity>
+            </View>
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
         </View>
     );
 }
@@ -719,6 +798,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     logo: {
+<<<<<<< HEAD
         fontSize: 32,
         fontWeight: 'bold',
         color: '#198754',
@@ -726,10 +806,17 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0, 0, 0, 0.1)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
+=======
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#198754',
+        marginBottom: 20,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     },
     title: {
         fontSize: 18,
         fontWeight: '600',
+<<<<<<< HEAD
         color: '#2c3e50',
         textAlign: 'center',
         marginBottom: 30,
@@ -786,6 +873,11 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         flex: 1,
+=======
+        color: '#000',
+        textAlign: 'center',
+        marginBottom: 40,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     },
     inputWrapper: {
         flexDirection: 'row',
@@ -793,6 +885,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         alignItems: 'center',
         width: '100%',
+<<<<<<< HEAD
         marginVertical: 12,
         paddingHorizontal: 20,
         elevation: 2,
@@ -836,11 +929,25 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: '#2e7d32',
         marginHorizontal: 4,
+=======
+        marginVertical: 10,
+        paddingHorizontal: 20,
+    },
+    input: {
+        flex: 1,
+        paddingVertical: 12,
+        fontSize: 14,
+        color: '#000',
+    },
+    icon: {
+        marginRight: 10,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     },
     navButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '50%',
+<<<<<<< HEAD
         marginTop: 30,
     },
     circleButton: {
@@ -893,3 +1000,16 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
 });
+=======
+        marginTop: 40,
+    },
+    circleButton: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        backgroundColor: '#A9D5AC',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f

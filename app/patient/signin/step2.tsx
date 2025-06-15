@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Animated, Dimensions } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -386,10 +387,30 @@ export default function Step2() {
       if (!email) {
         shakeInput();
         showError('Email not found in storage');
+=======
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
+import * as SecureStore from 'expo-secure-store';
+
+export default function Step2() {
+  const router = useRouter();
+  const [pin, setPin] = useState('');
+
+  const handleLogin = async () => {
+    try {
+     const email = await SecureStore.getItemAsync('email');
+
+      if (!email) {
+        Alert.alert('Error', 'Email not found in storage');
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
         return;
       }
 
       if (pin.length !== 4) {
+<<<<<<< HEAD
         shakeInput();
         showError('Please enter a 4-digit PIN');
         return;
@@ -397,6 +418,13 @@ export default function Step2() {
 
       startLoadingAnimation();
 
+=======
+        Alert.alert('Invalid PIN', 'Please enter a 4-digit PIN');
+        return;
+      }
+
+      // Send PIN and email to your API
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
       const response = await fetch('http://10.0.1.105:8000/api/login/step2/', {
         method: 'POST',
         headers: {
@@ -408,6 +436,7 @@ export default function Step2() {
       const data = await response.json();
 
       if (response.ok) {
+<<<<<<< HEAD
         showSuccess('Login successful! Redirecting...');
         setTimeout(() => {
           router.push('/patient/signin/congrats');
@@ -654,6 +683,45 @@ export default function Step2() {
           }
         ]}
       />
+=======
+        router.push('/patient/signin/congrats');
+      } else {
+        Alert.alert('Login Failed', data.message || 'Invalid PIN');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Something went wrong. Try again.');
+      console.error(error);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.logo}>💚 MediTrust</Text>
+
+      <Text style={styles.title}>Enter your 4-digit pin</Text>
+
+      <View style={styles.inputWrapper}>
+        <TextInput
+          placeholder="Enter PIN"
+          placeholderTextColor="#000"
+          keyboardType="numeric"
+          secureTextEntry
+          maxLength={4}
+          value={pin}
+          onChangeText={setPin}
+          style={styles.input}
+        />
+        <Ionicons name="keypad" size={20} color="black" style={styles.icon} />
+      </View>
+
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginText}>Login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </TouchableOpacity>
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     </View>
   );
 }
@@ -667,6 +735,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
+<<<<<<< HEAD
     fontSize: 32,
     fontWeight: 'bold',
     color: '#198754',
@@ -674,11 +743,18 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.1)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 4,
+=======
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#198754',
+    marginBottom: 20,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   title: {
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 30,
+<<<<<<< HEAD
     color: '#2c3e50',
     textAlign: 'center',
   },
@@ -752,12 +828,16 @@ const styles = StyleSheet.create({
   pinDotFilled: {
     backgroundColor: '#2e7d32',
     borderColor: '#2e7d32',
+=======
+    color: '#000',
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   inputWrapper: {
     flexDirection: 'row',
     backgroundColor: '#A9D5AC',
     borderRadius: 30,
     alignItems: 'center',
+<<<<<<< HEAD
     width: width * 0.9,
     paddingHorizontal: 20,
     marginBottom: 30,
@@ -777,6 +857,17 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
     letterSpacing: 8,
+=======
+    width: '100%',
+    paddingHorizontal: 20,
+    marginBottom: 30,
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 12,
+    fontSize: 16,
+    color: '#000',
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   icon: {
     marginLeft: 10,
@@ -784,6 +875,7 @@ const styles = StyleSheet.create({
   loginButton: {
     backgroundColor: '#2D9B51',
     borderRadius: 25,
+<<<<<<< HEAD
     paddingVertical: 14,
     paddingHorizontal: 50,
     marginBottom: 40,
@@ -798,11 +890,17 @@ const styles = StyleSheet.create({
   },
   loadingButton: {
     opacity: 0.6,
+=======
+    paddingVertical: 12,
+    paddingHorizontal: 50,
+    marginBottom: 40,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   loginText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+<<<<<<< HEAD
     textAlign: 'center',
   },
   backButtonContainer: {
@@ -811,12 +909,20 @@ const styles = StyleSheet.create({
     left: 40,
   },
   backButton: {
+=======
+  },
+  backButton: {
+    position: 'absolute',
+    bottom: 40,
+    left: 40,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     backgroundColor: '#A9D5AC',
     borderRadius: 24,
     width: 48,
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
+<<<<<<< HEAD
     elevation: 4,
     shadowColor: '#000',
     shadowOffset: {
@@ -878,3 +984,7 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
 });
+=======
+  },
+});
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f

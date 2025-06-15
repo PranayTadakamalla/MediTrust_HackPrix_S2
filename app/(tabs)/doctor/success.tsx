@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { 
   View, 
@@ -192,6 +193,21 @@ export default function Success() {
       withTiming(1, { duration: 100 })
     );
 
+=======
+import React, { useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, BackHandler } from 'react-native';
+import { useRouter } from 'expo-router';
+import Lottie from 'lottie-react-native';
+
+export default function Success() {
+  const router = useRouter();
+
+  const handleContinue = () => {
+    router.push('/(tabs)/doctor/dashboard');
+  };
+
+  const handleLogout = () => {
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     Alert.alert(
       'Logout',
       'Are you sure you want to logout?',
@@ -217,6 +233,7 @@ export default function Success() {
     return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
   }, []);
 
+<<<<<<< HEAD
   // Animated styles
   const logoAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -394,6 +411,36 @@ export default function Success() {
           </Animated.Text>
         </View>
       )}
+=======
+  return (
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+        <View style={styles.logoContainer}>
+          <Lottie
+            source={require('../../../assets/animations/Animation1.json')}
+            autoPlay
+            loop
+            style={styles.logo}
+            resizeMode="contain"
+          />
+        </View>
+        <View style={styles.greenCircle} />
+
+        <Text style={styles.heading}>You’ve Logged In Successfully!</Text>
+        <Text style={styles.subtext}>Welcome to the future of secure healthcare.</Text>
+
+        <TouchableOpacity style={styles.button} onPress={handleContinue}>
+          <Text style={styles.buttonText}>Go to Dashboard</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#dc3545', marginTop: 12 }]}
+          onPress={handleLogout}
+        >
+          <Text style={styles.buttonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
     </View>
   );
 }
@@ -410,11 +457,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     maxWidth: 400,
+<<<<<<< HEAD
     zIndex: 10,
+=======
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   logoContainer: {
     width: 100,
     height: 100,
+<<<<<<< HEAD
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
@@ -425,6 +476,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
+=======
+    overflow: 'hidden',
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   heading: {
     fontSize: 24,
@@ -437,12 +491,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#555',
     textAlign: 'center',
+<<<<<<< HEAD
     marginBottom: 30,
+=======
+    marginBottom: 20,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   button: {
     backgroundColor: '#2D9B51',
     paddingVertical: 14,
     paddingHorizontal: 24,
+<<<<<<< HEAD
     borderRadius: 25,
     flexDirection: 'row',
     alignItems: 'center',
@@ -459,12 +518,22 @@ const styles = StyleSheet.create({
   },
   buttonIcon: {
     marginRight: 8,
+=======
+    borderRadius: 10,
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
   buttonText: {
     color: '#fff',
     fontWeight: '600',
     fontSize: 16,
   },
+<<<<<<< HEAD
+=======
+  logo: {
+    width: 100,
+    height: 100,
+  },
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   greenCircle: {
     position: 'absolute',
     bottom: -800,
@@ -473,6 +542,7 @@ const styles = StyleSheet.create({
     height: 715.37,
     backgroundColor: '#2D9B51',
     borderRadius: 364.775,
+<<<<<<< HEAD
     opacity: 0.8,
   },
   // Floating elements
@@ -559,5 +629,7 @@ const styles = StyleSheet.create({
     color: '#2D9B51',
     textAlign: 'center',
     marginTop: 20,
+=======
+>>>>>>> 4cf010a2eed146bd5f8715109c47bb77aa876e4f
   },
 });
