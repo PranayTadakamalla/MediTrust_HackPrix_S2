@@ -45,7 +45,7 @@ export default function Dashboard() {
   const handleFind = async () => {
     try {
       const response = await fetch(
-        `http://10.0.1.105:8000/api/search-patient/${urn}/`
+        `http://10.0.1.105:8000/api/${urn}/`
       );
       const result = await response.json();
 
@@ -62,8 +62,27 @@ export default function Dashboard() {
     }
   };
 
-  const handleRequest = () => {
-    setIsRequested(true);
+  const handleRequest = async () => {
+    try {
+      const response = await fetch(
+        `http://10.0.1.105:8000/api/request-patient/${urn}/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      if (response.ok) {
+        setIsRequested(true);
+        Alert.alert('Request Sent', 'Patient data request has been sent.');
+      } else {
+        Alert.alert('Error', 'Failed to send request.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      Alert.alert('Error', 'Failed to send request.');
+    }
   };
 
   return (

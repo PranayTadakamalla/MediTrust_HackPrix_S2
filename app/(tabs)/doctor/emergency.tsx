@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    Image,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform,
+    Modal,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -9,6 +20,9 @@ export default function EmergencyAccessScreen() {
     const [licenseNumber, setLicenseNumber] = useState('');
     const [aadhaarSSN, setAadhaarSSN] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const [showImage, setShowImage] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [fullImageUrl, setFullImageUrl] = useState('');
 
     const handleEmergencyAccess = () => {
         const requestData = {
@@ -16,6 +30,8 @@ export default function EmergencyAccessScreen() {
             licenseNumber,
             aadhaarSSN,
         };
+
+        setLoading(true);
 
         fetch('http://10.0.1.105:8000/api/emergency/', {
             method: 'POST',
@@ -26,16 +42,23 @@ export default function EmergencyAccessScreen() {
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Invalid credentials');
                 }
                 return response.json();
             })
             .then((data) => {
                 console.log('Success:', data);
-                
+                const imageUrl = 'http://10.0.1.105:8000/uploads/21f3d01b-c61d-488a-aef6-3ee35cbd3109.jpeg';
+                setFullImageUrl(imageUrl);
+                setShowImage(true);
             })
             .catch((error) => {
                 console.error('Error:', error);
+                setShowImage(false);
+                alert('Invalid credentials. Please try again.');
+            })
+            .finally(() => {
+                setLoading(false);
             });
     };
 
@@ -45,16 +68,10 @@ export default function EmergencyAccessScreen() {
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                {/* Green Curve at Top Right */}
                 <View style={styles.greenCurve} />
-
-                {/* Title */}
                 <Text style={styles.title}>Doctor</Text>
-
-                {/* Heading */}
                 <Text style={styles.heading}>Emergency Access</Text>
 
-                {/* Input Fields */}
                 <View style={styles.inputGroup}>
                     <View style={styles.inputContainer}>
                         <Ionicons name="person" size={20} color="#333" style={styles.icon} />
@@ -90,73 +107,51 @@ export default function EmergencyAccessScreen() {
                     </View>
                 </View>
 
-                {/* Emergency Access Button */}
-                <TouchableOpacity style={styles.button} onPress={handleEmergencyAccess}>
-                    <Text style={styles.buttonText}>Emergency Access</Text>
+                <TouchableOpacity style={styles.button} onPress={handleEmergencyAccess} disabled={loading}>
+                    <Text style={styles.buttonText}>
+                        {loading ? 'Please wait...' : 'Emergency Access'}
+                    </Text>
                 </TouchableOpacity>
 
-                {/* Thumbnail Image */}
-                {patientURN && licenseNumber && aadhaarSSN && (
-                    <TouchableOpacity
-                        onPress={() => {
-                            setModalVisible(true);
-                        }}
-                    >
+                {showImage && (
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <Image
-                            source={{ uri: "http://10.0.1.105:8000/uploads/f1e95ddc-62b7-43bc-96e3-d5ff0d711ba5.jpeg" }}
+                            source={{ uri: fullImageUrl }}
                             style={styles.thumbnailImage}
                         />
                     </TouchableOpacity>
                 )}
 
-                {/* Modal for Fullscreen Image */}
-                {modalVisible && (
+                <Modal visible={modalVisible} transparent={true} animationType="fade">
                     <View style={styles.modalContainer}>
-                        <TouchableOpacity
-                            style={styles.closeButton}
-                            onPress={() => setModalVisible(false)}
-                        >
-                            <Ionicons name="close" size={24} color="#fff" />
+                        <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                            <Ionicons name="close" size={30} color="#fff" />
                         </TouchableOpacity>
                         <Image
-                            source={{ uri: "http://10.15.54.177:8000/uploads/f1e95ddc-62b7-43bc-96e3-d5ff0d711ba5.jpeg" }}
+                            source={{ uri: fullImageUrl }}
                             style={styles.fullscreenImage}
                         />
                     </View>
-                )}
+                </Modal>
             </ScrollView>
 
-            {/* Bottom Navigation Bar */}
             <View style={styles.navBar}>
-                   <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/dashboard')}>
-                      <Ionicons name="home-outline" size={24} color="#000" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.navItem}
-                      onPress={() => router.push('/doctor/notification')}
-                    >
-                      <Ionicons name="notifications-outline" size={24} color="#000" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.navItem}
-                      onPress={() => router.push('/doctor/view')}
-                    >
-                      <Ionicons name="medkit-outline" size={24} color="#000" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.navItem}
-                      onPress={() => router.push('/doctor/profile')}
-                    >
-                      <Ionicons name="person-outline" size={24} color="#000" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={styles.navItem}
-                      onPress={() => router.push('/doctor/emergency')}
-                    >
-                      <Ionicons name="eye-outline" size={24} color="#000" />
-                    </TouchableOpacity>
-                  </View>
-            
+                <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/dashboard')}>
+                    <Ionicons name="home-outline" size={24} color="#000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/notification')}>
+                    <Ionicons name="notifications-outline" size={24} color="#000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/view')}>
+                    <Ionicons name="medkit-outline" size={24} color="#000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/profile')}>
+                    <Ionicons name="person-outline" size={24} color="#000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.navItem} onPress={() => router.push('/doctor/emergency')}>
+                    <Ionicons name="eye-outline" size={24} color="#000" />
+                </TouchableOpacity>
+            </View>
         </KeyboardAvoidingView>
     );
 }
@@ -164,20 +159,21 @@ export default function EmergencyAccessScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E8F5E9', // Light green background
+        backgroundColor: '#E8F5E9',
     },
     scrollContent: {
         flexGrow: 1,
         padding: 20,
+        paddingBottom: 100,
     },
     greenCurve: {
         position: 'absolute',
-        top: -100, // Adjust to position the curve off-screen
-        right: -100, // Adjust to position the curve off-screen
-        width: 200, // Approximate size based on image
-        height: 200, // Approximate size based on image
-        backgroundColor: '#2D9B51', // Green color from MediTrust theme
-        borderRadius: 100, // Half of width/height for a circle
+        top: -100,
+        right: -100,
+        width: 200,
+        height: 200,
+        backgroundColor: '#2D9B51',
+        borderRadius: 100,
     },
     title: {
         fontSize: 18,
@@ -193,7 +189,7 @@ const styles = StyleSheet.create({
         color: '#333',
         textAlign: 'center',
         marginBottom: 30,
-        marginTop: 50, // Space below title
+        marginTop: 50,
     },
     inputGroup: {
         marginBottom: 20,
@@ -201,7 +197,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#F1F8E9', // Light green input background
+        backgroundColor: '#F1F8E9',
         borderRadius: 25,
         borderWidth: 1,
         borderColor: '#A5D6A7',
@@ -221,7 +217,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     button: {
-        backgroundColor: '#2D9B51', // Green button
+        backgroundColor: '#2D9B51',
         paddingVertical: 12,
         paddingHorizontal: 40,
         borderRadius: 25,
@@ -240,38 +236,34 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     modalContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
         justifyContent: 'center',
         alignItems: 'center',
     },
     closeButton: {
         position: 'absolute',
-        top: 20,
+        top: 40,
         right: 20,
-        zIndex: 1,
+        zIndex: 2,
     },
     fullscreenImage: {
         width: '90%',
-        height: '90%',
+        height: '80%',
         resizeMode: 'contain',
     },
-      navBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#A9D5AC',
-    paddingVertical: 10,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  navItem: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    navBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: '#A9D5AC',
+        paddingVertical: 10,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+    },
+    navItem: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });

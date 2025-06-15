@@ -58,7 +58,7 @@ export default function Dashboard() {
                     type: 'image/jpeg',
                 } as unknown as Blob);
 
-                const response = await fetch('http://10.15.54.177:8000/upload-image/', {
+                const response = await fetch('http://10.0.1.105:8000/upload-image/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',
